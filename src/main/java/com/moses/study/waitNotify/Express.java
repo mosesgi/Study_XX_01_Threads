@@ -10,7 +10,15 @@ public class Express {
 		this.distance = distance;
 		this.location = location;
 	}
-	
+
+	/**
+	 * wait - notify 标准范式
+	 * notify方
+	 * 1. 获取对象的锁
+	 * 2. 改变条件
+	 * 3. notify/notifyAll 通知等待线程
+	 * @param newLoc
+	 */
 	public synchronized void changeLocation(String newLoc) {
 		location = newLoc;
 		notifyAll();
@@ -20,13 +28,19 @@ public class Express {
 		distance = newDistance;
 		notifyAll();
 	}
-	
+
+	/**
+	 * wait - notify 标准范式
+	 * wait方
+	 * 1. 获取对象的锁
+	 * 2. 循环里判断条件是否满足，不满足调用wait方法
+	 * 3. 条件满足执行业务逻辑
+	 */
 	public synchronized void waitLocation() {
 		while(BJ.equals(location)) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("Check location thread " + Thread.currentThread().getId() + " is being notified.");

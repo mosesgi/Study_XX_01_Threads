@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
+/**
+ * Fork - Join
+ * RecursiveAction 无返回值
+ * RecursiveTask 有返回值
+ */
 public class FindDirsFiles extends RecursiveAction {
 	
 	private File path;
