@@ -6,7 +6,7 @@ public class EndRunnable {
 		@Override
 		public void run() {
 			String threadName = Thread.currentThread().getName();
-			while(Thread.currentThread().isInterrupted()) {
+			while(!Thread.currentThread().isInterrupted()) {
 				System.out.println(threadName + " is running!");
 			}
 			System.out.println(threadName + " interrupt flag is " + Thread.currentThread().isInterrupted());
@@ -15,7 +15,14 @@ public class EndRunnable {
 	}
 	
 	public static void main(String[] args) {
-		UseRunnable useRunnable = new UseRunnable();
-		
+		Thread t = new Thread(new UseRunnable());
+		t.start();
+		try {
+			Thread.sleep(20);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		t.interrupt();
+
 	}
 }

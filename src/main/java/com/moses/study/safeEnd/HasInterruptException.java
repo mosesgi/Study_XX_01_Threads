@@ -13,6 +13,8 @@ public class HasInterruptException {
 					Thread.sleep(100);
 				} catch(InterruptedException e) {
 					System.out.println(name + " interrupt flag is " + isInterrupted());
+					//当InterruptedException抛出的时候，线程的中断状态将会被清除，重新置为false。
+					//此时最好的一种做法是将线程中断状态重新置为true，这样才能最完全的保留线程当前的执行状况
 					interrupt();
 					e.printStackTrace();
 				}
