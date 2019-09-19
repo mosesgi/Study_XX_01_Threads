@@ -15,7 +15,7 @@ public class UseAtomicStampedReference {
 		System.out.println(oldRef + "===============" + oldStamp);
 		
 		Thread rightStampThread = new Thread(() -> System.out.println(Thread.currentThread().getName() + "当前变量值: " + oldRef 
-					+ "当前版酉戳: " + oldStamp + "-" + asr.compareAndSet(oldRef, oldRef + "Java", oldStamp, oldStamp+1)));
+					+ "当前版本戳: " + oldStamp + "-" + asr.compareAndSet(oldRef, oldRef + "Java", oldStamp, oldStamp+1)));
 		
 		Thread errorStampThread = new Thread(() -> System.out.println(Thread.currentThread().getName() + "当前变量值: " + asr.getReference() 
 					+ "当前版本戳: " + asr.getStamp() + "-" + asr.compareAndSet(asr.getReference(), asr.getReference() + "C", oldStamp, oldStamp + 1)));
